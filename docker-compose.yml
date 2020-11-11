@@ -5,8 +5,8 @@ services:
     build: ./api
     ports:
       - "5555:5555"
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     container_name: agrisults-api
     env_file: ./api/.env
     volumes: 
