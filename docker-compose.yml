@@ -11,21 +11,20 @@ services:
     env_file: ./api/.env
     volumes: 
       - ./api:/api
-    mem_limit: 128m
+    mem_limit: 256m
     links: 
-      - ui
-      - mongo
+      - db
     
 
   ui:
     build: ./ui
     ports:
-      - "80:3000"
+      - "8080:3000"
     container_name: agrisults-ui
     env_file: ./ui/.env
     volumes: 
       - ./ui:/app
-    mem_limit: 128m
+    mem_limit: 256m
     links:
       - api
     
@@ -38,7 +37,5 @@ services:
     volumes:
       - ./database:/data/db
     mem_limit: 128m
-    links:
-      - api
     
   
