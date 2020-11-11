@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:14.15.0
 
 
 ARG PORT=5555
@@ -11,12 +11,14 @@ WORKDIR /api
 # install app dependencies
 COPY ./package.json .
 
+RUN rm -rf node_modules
+
 RUN npm install 
 
 COPY . .
 
 ENV PATH /api/node_modules/.bin:$PATH
-ENV PATH /var:$PATH
+ENV PATH /api/node_modules:$PATH
 
 
 EXPOSE ${PORT}
@@ -24,6 +26,6 @@ EXPOSE ${PORT}
 
 RUN ls -a
 
-RUN ls -a /var
+# RUN ls -a -R /
 # start app
 CMD ["npm","run", "start"]

@@ -10,6 +10,7 @@ services:
     container_name: agrisults-api
     env_file: ./api/.env
     volumes: 
+      - /api/node_modules
       - ./api:/api
     mem_limit: 256m
     # links: 
@@ -23,6 +24,8 @@ services:
     container_name: agrisults-ui
     env_file: ./ui/.env
     volumes: 
+      - /app/node_modules
+      # - /app/public
       - ./ui:/app
     mem_limit: 256m
     links:
