@@ -25,7 +25,6 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo start deployment to AWS Beanstalk,
-      - name: Deploy to AWS Beanstalk
       - name: Generate deployment package
         run: zip -r deploy.zip * -x "**node_modules**"
 
