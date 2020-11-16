@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nimport React from 'react';\nimport styled from 'styled-components';\n\nlet Hero = ({\n  className\n}) => {\n  return /*#__PURE__*/_jsx(\"section\", {\n    className: className\n  });\n};\n\nHero = styled(Hero)`\n\n\n\n`;\nexport default Hero;","map":null,"metadata":{},"sourceType":"module"}
