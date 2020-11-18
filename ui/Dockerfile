@@ -41,6 +41,6 @@ RUN yarn add --dev typescript @types/react @types/node
 
 EXPOSE 3000
 
-RUN yarn build
+# RUN yarn build
 
 CMD ["yarn", "start"]
