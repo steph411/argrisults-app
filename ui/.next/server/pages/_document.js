@@ -150,8 +150,11 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_1___default.a {
 
   render() {
     return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(next_document__WEBPACK_IMPORTED_MODULE_1__["Html"], {
-      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(next_document__WEBPACK_IMPORTED_MODULE_1__["Head"], {
-        children: this.props.styleTags
+      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(next_document__WEBPACK_IMPORTED_MODULE_1__["Head"], {
+        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("link", {
+          href: "https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css",
+          rel: "stylesheet"
+        }), this.props.styleTags]
       }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("body", {
         children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(next_document__WEBPACK_IMPORTED_MODULE_1__["Main"], {}), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(next_document__WEBPACK_IMPORTED_MODULE_1__["NextScript"], {})]
       })]

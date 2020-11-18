@@ -19,6 +19,9 @@ const DownloadButton = styled.a`
   display: inline-block;
   font-weight: bold;
   width: 100%;
+  &:hover{
+    cursor: pointer;
+  }
   
 
 `
@@ -47,7 +50,7 @@ let Footer: React.FC<Props> = ({ className }) => {
     <section className={className}>
 
       <div className="footer container">
-        <div className="logo">
+        <div className="logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <LogoGreen/>
         </div>
         {
@@ -55,6 +58,7 @@ let Footer: React.FC<Props> = ({ className }) => {
             <FooterInfo
               title={section.title}
               elements={section.elements}
+              key={idx}
             />
           ))
         }
@@ -71,7 +75,7 @@ let Footer: React.FC<Props> = ({ className }) => {
         <span>
           Copyright 2020 AbundeSEG 
         </span>
-        <span>
+        <span className="go-up" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           Go to top &nbsp;
           <UpArrow/>
         </span>
@@ -108,9 +112,10 @@ Footer = styled(Footer)`
       
     }
   }
-  
 
-
+  .go-up{
+    cursor: pointer;
+  }
 `
 
 export default Footer

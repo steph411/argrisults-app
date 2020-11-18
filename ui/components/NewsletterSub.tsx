@@ -14,6 +14,11 @@ const SubscribeButton: React.FC = styled.a`
   background: var(--green);
   padding: 1.25rem 5rem;
   border-radius: 34px;
+  transition: all 200ms ease-in-out;
+  &:hover{
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+  }
 
 `
 
@@ -51,6 +56,7 @@ NewsletterSub = styled(NewsletterSub)`
   }
   .sub-button{
     padding: 2rem 0;
+    
   }
 
 `

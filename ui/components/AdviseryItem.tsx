@@ -15,7 +15,9 @@ let AviseryButton = styled.a`
   padding: 15px 44px;
   background: ${props => props.inverted ? "var(--dark-green);": "white;"};
   color: ${props => props.inverted ?"white;": "var(--dark-green);"};
-
+  &:hover{
+    cursor: pointer;
+  }
 `
 
 

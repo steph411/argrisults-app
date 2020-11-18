@@ -23,6 +23,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
           {/* <title>agrisuits</title> */}
           {/* Step 5: Output the styles in the head  */}
           {this.props.styleTags}

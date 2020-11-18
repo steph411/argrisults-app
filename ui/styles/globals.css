@@ -119,3 +119,11 @@ select {
   padding-right: calc(50% - var(--container) / 2);
 
 }
+
+/* for the chart SVG  */
+.svg-content {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

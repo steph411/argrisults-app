@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useRef, useEffect} from 'react'
 import styled from 'styled-components'
-
+import { drawChart } from '../utils'
 
 interface Props {
   className?: string 
+  chartData?: any[] 
 }
 
 interface FlagProps{
@@ -36,7 +37,108 @@ Flag = styled(Flag)`
 
 
 
-let  Forecasts: React.FC<Props> = ({className}) => {
+let Forecasts: React.FC<Props> = ({ className, chartData = [] }) => {
+  const chartRef = useRef(null)
+  const hour = true;
+
+
+
+
+  
+  useEffect(() => {
+    let data = chartData
+    if (hour) {
+      data = chartData[0].forecast
+    }
+    
+    let formattedData = data.map((el, i) => {
+      // console.log({ element: el });
+      if (hour) {
+        return {
+          label: el.endTime.split("T")[1].split("+")[0].slice(0, 2),
+          value: el.temperatures.value
+        }
+      }
+      else {
+        return {
+          label: el.date,
+          value: el.forecast[12].temperatures.value
+        }
+      }
+    });
+
+    // let formattedDataDates = data.map((el, i) => {
+    //   return el.endTime.split("T")[1].split("+")[0].slice(0,2)
+    // })
+
+    drawChart(formattedData, chartRef);
+
+
+    // const containerHeight = chartRef.current.clientHeight
+    // const containerWidth = chartRef.current.clientWidth
+    // console.log({containerWidth, containerHeight})
+    
+    // let svg = d3.select(chartRef.current)
+    //   .append("svg")
+    //   // .attr("preserveAspectRatio", "xMinYMin meet")
+    //   // .attr("viewBox", "0 0 300 300")
+    //   .attr("width", containerWidth)
+    //   .attr("height", containerHeight)
+    //   .classed("svg-content", true)  
+    
+    // let selection = svg.selectAll("rect").data(formattedData);
+    // let yScale = d3.scaleLinear()
+    //   .domain([0, d3.max(formattedData)])
+    //   .range([0, containerHeight - 100]);
+    
+    // let xDateScale = d3.scalePoint()
+    //   .domain(formattedDataDates)
+    //   .range([0, containerWidth])
+    
+    // svg
+    //   .append("g")
+    //   .attr("transform", "translate(0, 0)")      // This controls the vertical position of the Axis
+    //   .call(d3.axisBottom(xDateScale));
+    
+    // let y_axis = d3.axisLeft()
+    //   .scale(yScale);
+
+    // svg.append("g")
+    //   .attr("transform", "translate(0, 0)")
+    //   .call(y_axis);
+    
+    // selection
+    // .transition().duration(300)
+    //     .attr("height", (d) => yScale(d))
+    //     .attr("y", (d) => containerHeight - yScale(d))
+    
+    // selection
+    //   .enter()
+    //   .append("rect")
+    //   .attr("x", (d, i) => i * 45)
+    //   .attr("y", (d) => containerHeight)
+    //   .attr("width", 40)
+    //   .attr("height", 0)
+    //   .attr("fill", "steelblue")
+    //   .transition().duration(300)
+    //   .attr("height", (d) => yScale(d))
+    //   .attr("y", (d) => containerHeight - yScale(d))
+    
+
+    // selection
+    //   .exit()
+    //   .transition().duration(300)
+    //       .attr("y", (d) => containerHeight)
+    //       .attr("height", 0)
+    //   .remove()
+  
+    },
+    [chartData]
+  )
+
+
+
+
   const flags: any[] = [
     {
       text: "today",
@@ -47,7 +149,7 @@ let  Forecasts: React.FC<Props> = ({className}) => {
       color: "--green"
     },
     {
-      text: "today",
+      text: "year",
       color: "--teal"
     },
   ]
@@ -64,8 +166,8 @@ let  Forecasts: React.FC<Props> = ({className}) => {
             />)
           )}
         </div>
-        <div className="chart">
-
+        <div className="chart" id="chart" ref={chartRef}>
+          
         </div>
       </div>
       <div className="parameters">
@@ -106,7 +208,13 @@ Forecasts = styled(Forecasts)`
     height: 378px;
     background: white;
     box-shadow: var(--shadow-sm);
+    position: relative;
+    width: 100%;
+    vertical-align: top;
+    overflow: hidden;
   }
+
+
 
   .parameters{
     height: 378px;

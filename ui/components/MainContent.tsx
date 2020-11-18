@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
 import Temperature from '../assets/temperature.svg'
 import Rainfall from '../assets/rain.svg'
@@ -7,51 +7,64 @@ import Radiation from '../assets/radiation.svg'
 import Wind from '../assets/wind.svg'
 import Location from '../assets/location.svg'
 import OverviewItem from './OverviewItem';
-import Forecasts from './Forecasts'
+import Forecasts from './Forecasts';
 import SidebarMenu from './SidebarMenu'
 import Ads from './Ads'
 import Advisery from './Advisery'
-
+import { appContext } from '../context'
 
 
 interface Props {
-  className?: string 
+  className?: string;
+  dailyWeather?: any;
+  forecasts?: any;
 }
 
-let MainContent: React.FC<Props> = ( {className}) => {
+let MainContent: React.FC<Props> = ( {className, dailyWeather, forecasts}) => {
   
+  console.log({weather: {dailyWeather, forecasts}}) 
+  const context = useContext(appContext);
+  const showMapContainer = (e) => {
+    context.toggleShowMap()
+  }
+
   const overviews: any[] = [
     {
       name: "temperature",
       logo: Temperature,
-      value: 15
+      value: dailyWeather.temperatures.value,
+      unit: dailyWeather.temperatures.units
     },
     {
       name: "Rainfall",
       logo: Rainfall,
-      value: 15
+      value: dailyWeather.precipitation.amount,
+      unit: dailyWeather.precipitation.units
     },
     {
       name: "humidity",
       logo: Humidity,
-      value: 15
+      value: dailyWeather.relativeHumidity.average,
+      unit: ""
     },
     {
       name: "Solar radiation",
       logo: Radiation,
-      value: 15
+      value: dailyWeather.solar.amount,
+      unit:dailyWeather.solar.units
     },
     {
       name: "Wind speed",
       logo: Wind,
-      value: 15
+      value: dailyWeather.wind.average,
+      unit: dailyWeather.wind.units
     },
   ]
   
   return (
     <section className={className}>
       <div className="location-icon-container">
-          <div className="location-icon">
+          <div className="location-icon" onClick={showMapContainer}>
             <Location />
           </div>
           <p className="location-text">Choose your location</p>
@@ -66,6 +79,7 @@ let MainContent: React.FC<Props> = ( {className}) => {
                   name={el.name}
                   logo={<el.logo />}
                   value={el.value}
+                  unit={el.unit}
                   key={idx}
                 />
               ))
@@ -74,7 +88,7 @@ let MainContent: React.FC<Props> = ( {className}) => {
         </div>
       </section>
       <SidebarMenu/>
-      <Forecasts />
+      <Forecasts chartData={forecasts} />
       <Ads />
       <Advisery/>
     </section>
@@ -116,6 +130,7 @@ MainContent = styled(MainContent)`
     background-color: var(--grey-light);
     box-shadow: var(--shadow-sm);
     grid-area: location;
+    cursor: pointer;
   }
 
   .location-icon{

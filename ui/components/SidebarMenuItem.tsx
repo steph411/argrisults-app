@@ -30,6 +30,10 @@ SidebarMenuItem = styled(SidebarMenuItem)`
   background: white;
   padding: 30px 22px; 
   color: var(--grey-dark);
+  &:hover{
+    cursor: pointer;
+    background: var(--grey-light);
+  }
   
   .name{
     display: inline-block;

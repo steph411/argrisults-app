@@ -26,6 +26,9 @@ NavElement = styled(NavElement)`
   font-size: 12px;
   color: white;
   font-weight: 500;
+  &:hover{
+    cursor: pointer;
+  }
 
   
 `

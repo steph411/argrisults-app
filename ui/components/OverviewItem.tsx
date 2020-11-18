@@ -7,12 +7,13 @@ interface Props {
   name: string
   logo: any;
   value: number;
+  unit?: string;
 }
 
-let  OverviewItem: React.FC<Props> = ( {className, value, logo, name}) => {
+let  OverviewItem: React.FC<Props> = ( {className, value, logo, name, unit=""}) => {
   return (
     <div className={className}>
-      <p className="value">{ value}</p>
+      <p className="value">{value.toFixed(2)} <span className="unit">{ unit }</span> </p>
       {logo}
       <p className="name">{ name }</p>
     </div>
@@ -20,7 +21,7 @@ let  OverviewItem: React.FC<Props> = ( {className, value, logo, name}) => {
 }
 
 
-OverviewItem = styled( OverviewItem)`
+OverviewItem = styled(OverviewItem)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +29,7 @@ OverviewItem = styled( OverviewItem)`
   & .value{
     text-align: left;
     width: 100%;
-    padding: 4px 10px;
+    padding: 4px;
   }
   border-radius: 10px;
   text-align: center;
@@ -38,6 +39,14 @@ OverviewItem = styled( OverviewItem)`
   & .name{
     margin-top: auto;
   }
+
+  .unit{
+    font-weight: 600;
+    color: var(--grey-dark);
+    margin-left: auto;
+  }
+
+
 `
 
 export default  OverviewItem

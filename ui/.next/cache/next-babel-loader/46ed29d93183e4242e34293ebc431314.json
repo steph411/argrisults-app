@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from 'react';\nexport var appContext = /*#__PURE__*/React.createContext({\n  showMap: false,\n  toggleShowMap: function toggleShowMap() {\n    return undefined;\n  }\n});","map":null,"metadata":{},"sourceType":"module"}
