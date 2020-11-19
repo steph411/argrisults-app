@@ -27,9 +27,9 @@ export const getForecasts = async (lat, lon, accessToken=undefined) => {
   const req = await axios.get(url, {
     headers: {
       Authorization: `Bearer ${access_token}`,
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "*",
-      "Access-Control-Allow-Headers": "*"
+      // "Access-Control-Allow-Origin": "*",
+      // "Access-Control-Allow-Methods": "*",
+      // "Access-Control-Allow-Headers": "*"
     }
   })
   const res = await req.data
@@ -49,9 +49,9 @@ export const getDailyWeather = async (lat, lon, accessToken = undefined) => {
   const req = await axios.get(url, {
     headers: {
       Authorization: `Bearer ${access_token}`,
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "*",
-      "Access-Control-Allow-Headers": "*"
+      // "Access-Control-Allow-Origin": "*",
+      // "Access-Control-Allow-Methods": "*",
+      // "Access-Control-Allow-Headers": "*"
     }
   })
   const res = await req.data

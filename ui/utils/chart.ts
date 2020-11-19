@@ -32,7 +32,7 @@ export const drawChart = (formattedData, chartRef, hour=true) => {
 
   let xDateScale = d3.scalePoint()
       .domain(labels)
-      .range([0, containerWidth])
+      .range([0, containerWidth - 3])
   svg
     .append("g")
     .attr("transform", "translate(0, 0)")      // This controls the vertical position of the Axis
@@ -55,9 +55,9 @@ export const drawChart = (formattedData, chartRef, hour=true) => {
   selection
     .enter()
     .append("rect")
-    .attr("x", (d, i) => i * 45)
+    .attr("x", (d, i) => i * 31)
     .attr("y", (d) => containerHeight)
-    .attr("width", 40)
+    .attr("width", 30)
     .attr("height", 0)
     .attr("fill", "steelblue")
     .transition().duration(300)
@@ -67,7 +67,7 @@ export const drawChart = (formattedData, chartRef, hour=true) => {
 
   selection
     .exit()
-    .transition().duration(300)
+    .transition().duration(400)
         .attr("y", (d) => containerHeight)
         .attr("height", 0)
     .remove()

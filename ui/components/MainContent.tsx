@@ -106,15 +106,9 @@ MainContent = styled(MainContent)`
                       "ads forecasts"
                       "ads advisery";
   grid-row-gap: 40px;
-  grid-column-gap: 20px;
+  column-gap: 20px;
   padding-left: calc(50% - var(--container) / 2);
   padding-right: calc(50% - var(--container) / 2);
-  & div{
-    /* background: palegoldenrod; */
-  }
-  & section{
-    /* background: palevioletred; */
-  }
 
   .sidebar{
     display: flex
@@ -127,10 +121,9 @@ MainContent = styled(MainContent)`
     place-items: center;
     text-align: center;
     border-radius: 10px;
-    background-color: var(--grey-light);
+    background-color: white;
     box-shadow: var(--shadow-sm);
     grid-area: location;
-    cursor: pointer;
   }
 
   .location-icon{
@@ -140,6 +133,12 @@ MainContent = styled(MainContent)`
     border-radius: 50%;
     display: grid;
     place-items: center;
+    background: var(--grey-light);
+    transition: all 300ms ease-out;
+    &:hover{
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+    }
   }
 
   .location-text{

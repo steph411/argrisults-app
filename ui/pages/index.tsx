@@ -14,6 +14,7 @@ export default function Home({ dailyWeather, forecasts, accessToken }) {
   const [appData, setAppData] = useState({ dailyWeather, forecasts });
   const [{ lon, lat }, setLonLat] = useState({ lon: "12.354722", lat: "7.369722" })
   
+  
   const closeModal = () => {
     setState(old => ({showMap: false}))
   }
