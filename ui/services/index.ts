@@ -16,9 +16,14 @@ const dailyWeatherUrl = (lat, lon, date="") => {
   
 
 
-export const getForecasts = async (lat, lon) => {
-  const access_token = await getAccessToken();
+export const getForecasts = async (lat, lon, accessToken=undefined) => {
+  
+  let access_token = accessToken;
+  if (!accessToken) {
+    access_token = await getAccessToken(); 
+  }
   const url = forecastsUrl(lat, lon);
+  console.log({apiurl: url})
   const req = await axios.get(url, {
     headers: {
       Authorization: `Bearer ${access_token}`,
@@ -33,10 +38,13 @@ export const getForecasts = async (lat, lon) => {
 }
 
 
-export const getDailyWeather = async (lat, lon) => {
+export const getDailyWeather = async (lat, lon, accessToken = undefined) => {
+  let access_token = accessToken;
+  if (!accessToken) {
+    access_token = await getAccessToken(); 
+  }
   let date = new Date();
   const formattedDate = date.toISOString().split("T")[0];
-  const access_token = await getAccessToken();
   const url = dailyWeatherUrl(lat, lon, formattedDate);
   const req = await axios.get(url, {
     headers: {
@@ -56,7 +64,7 @@ export const getDailyWeather = async (lat, lon) => {
 
 
 
-const getAccessToken = async () => {
+export const getAccessToken = async () => {
   const api_key = process.env.AWHERE_KEY;
   const api_secret = process.env.AWHERE_SECRET;
   const encodedKey = Buffer.from(`${api_key}:${api_secret}`).toString("base64");
