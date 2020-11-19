@@ -13,7 +13,7 @@ COPY ./package-lock.json .
 
 # RUN npm install --save-dev typescript @types/react @types/node
 
-RUN yarn install
+# RUN yarn install
 
 COPY . .
 
@@ -27,16 +27,16 @@ RUN ls -a
 ENV PATH /app/node_modules:$PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-# RUN npm install
+RUN npm install
 
-# RUN npm install --save-dev typescript @types/react @types/node
+RUN npm install --save-dev typescript @types/react @types/node
 
 # RUN npm install
 
 # RUN rm -rf ./.next
 
 RUN ls -a
-RUN yarn add --dev typescript @types/react @types/node
+# RUN yarn add --dev typescript @types/react @types/node
 
 
 EXPOSE 3000
