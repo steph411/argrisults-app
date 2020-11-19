@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const tokenUrl = "https://api.awhere.com/oauth/token"
-const baseApiUrl = process.env.BASE_API_URL
+const baseApiUrl = "https://api.awhere.com/v2"
 const forecastsUrl = (lat, lon) => `${baseApiUrl}/weather/locations/${lat},${lon}/forecasts`
 const dailyWeatherUrl = (lat, lon, date="") => {
   let result = `${baseApiUrl}/weather/locations/${lat},${lon}/forecasts`
